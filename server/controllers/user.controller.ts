@@ -1,8 +1,9 @@
 const db = require('../data-base')
 
 class UserController {
-    async createUser(req: Request, res: Response) {
-
+    async createUser(req: any, res: any) {
+        const { nickname, password } = req.body
+        console.log(nickname, '-------------',password)
     }
     async getUsers(req: Request, res: Response) {
 
