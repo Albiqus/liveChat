@@ -1,12 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { LiveChat } from './components/LiveChat/LiveChat';
 
 function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+    return <LiveChat />
 }
 
 export default App;

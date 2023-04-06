@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "UnivaFontBold";
+    src: url("../fonts/UnivaNova-Bold.ttf");
+}
+
+@font-face {
+    font-family: "UnivaFontLight";
+    src: url("../fonts/UnivaNova-Light.ttf");
+}
