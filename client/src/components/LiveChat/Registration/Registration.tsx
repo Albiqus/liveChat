@@ -35,7 +35,7 @@ export const Registration = () => {
 
     const onFormSubmit = () => {
         if (nickname && pass && repeatPass) {
-            createUser(nickname, pass)
+            createUser(nickname, pass, repeatPass)
         } else {
             setIsEmptyInputs(getIsEmptyInputs(nickname, pass, repeatPass))
         }
