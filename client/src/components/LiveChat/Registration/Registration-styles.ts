@@ -140,16 +140,12 @@ export const ButtonText = styled.span`
     font-size: 20px;
 `
 
-export const Error = styled.p`
-    margin: 0;
-    top: 75px;
-    left: -160px;
+export const Preloader = styled.img`
     position: absolute;
-    color: rgb( 220,20,60);
-    font-size: 20px;
-      font-family: 'UnivaFontLight';
-    &:hover{
-        cursor: default;
-            }
+    left: 75px;
+    top: -25px;
+    width: 100px;
+    height: 100px;  
 `
+
 
