@@ -1,21 +1,22 @@
-import { Button, ButtonBox, ButtonText, Div, Form, Header, Input, Label, Paragraph, Wrapper, Placeholder, Tooltip, P, Preloader } from "./Registration-styles"
+import { Button, ButtonBox, ButtonText, Div, Form, Header, Input, Label, Paragraph, Wrapper, Placeholder, Tooltip, P, Preloader, Hint } from "./Registration-styles"
 import { useSelector, useDispatch } from "react-redux";
 import placeholder from '../../../images/icons/placeholder.png'
 import { useState } from 'react';
-import { getRegistrationErrors } from "../../../utils/getRegistrationErrors";
-import { PassInput } from "./PassInput/PassInput";
+import { getErrors } from "../../../utils/getErrors";
 import preloader from '../../../images/preloaders/pending.svg'
 import { RootState } from "../../../store/store";
-import { Error } from "./Error/Error";
 import { nickErrorIds, passErrorIds, repeatPassErrorIds } from "../../../data/registrationErrors";
-import { createUserFetchRequested, deleteErrors, setErrors, setPreloader } from "../../../actionCreators/Registration";
+import { createUserFetchRequested, deleteErrors, setRegPreloader, setRegistrationErrors } from "../../../actionCreators/Registration";
 import { ChangeEvent } from 'react';
+import { PassInput } from "../Common/PassInput/PassInput";
+import { NavLink } from 'react-router-dom';
+import { Error } from "../Common/Error/Error";
 
 
 export const Registration = () => {
 
     const dispatch = useDispatch();
-    const { isPreloader } = useSelector((state: RootState) => state.registration);
+    const { isPreloader, currentErrorIds } = useSelector((state: RootState) => state.registration);
 
     const [nickname, setNickname] = useState('')
     const [pass, setPass] = useState('')
@@ -26,7 +27,7 @@ export const Registration = () => {
     const [repeatPassTooltip, setRepeatPassTooltip] = useState(false)
 
 
-    const onNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onNickChange = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(deleteErrors(nickErrorIds))
         setNickname(e.target.value)
     }
@@ -41,11 +42,11 @@ export const Registration = () => {
 
     const onFormSubmit = () => {
         if (nickname && pass && repeatPass) {
-            dispatch(setPreloader())
+            dispatch(setRegPreloader())
             dispatch(createUserFetchRequested(nickname, pass, repeatPass))
         } else {
-            const errors = getRegistrationErrors(nickname, pass, repeatPass)
-            dispatch(setErrors(errors))
+            const errors = getErrors('registration', nickname, pass, repeatPass)
+            dispatch(setRegistrationErrors(errors))
         }
     }
 
@@ -66,8 +67,8 @@ export const Registration = () => {
                 <Wrapper>
                     <Label>Nickname</Label>
                     <Placeholder onMouseEnter={onNicknameMouseEnter} onMouseLeave={onNicknameMouseLeave} src={placeholder}></Placeholder>
-                    <Input onChange={onNameChange} value={nickname} />
-                    <Error type={'nickname'}></Error>
+                    <Input onChange={onNickChange} value={nickname} />
+                    <Error inputType={'nickname'} currentErrorIds={currentErrorIds}></Error>
 
                     {nicknameTooltip &&
                         <Tooltip>
@@ -85,7 +86,7 @@ export const Registration = () => {
                     <Label>Password</Label>
                     <Placeholder onMouseEnter={onPassMouseEnter} onMouseLeave={onPassMouseLeave} src={placeholder} ></Placeholder>
                     <PassInput pass={pass} onPassChange={onPassChange} />
-                    <Error type={'password'}></Error>
+                    <Error inputType={'password'} currentErrorIds={currentErrorIds}></Error>
 
                     {passTooltip &&
                         <Tooltip>
@@ -99,7 +100,7 @@ export const Registration = () => {
                     <Label>Repeat Password</Label>
                     <Placeholder onMouseEnter={onRepeatPassMouseEnter} onMouseLeave={onRepeatPassMouseLeave} src={placeholder} style={{ right: '0px' }}></Placeholder>
                     <PassInput pass={repeatPass} onPassChange={onRepeatPassChange} />
-                    <Error type={'repeatPassword'}></Error>
+                    <Error inputType={'repeatPassword'} currentErrorIds={currentErrorIds}></Error>
 
                     {repeatPassTooltip &&
                         <Tooltip style={{ left: '200px' }}>
@@ -115,6 +116,7 @@ export const Registration = () => {
                         {isPreloader && <Preloader src={preloader}></Preloader>}
                     </Button>
                 </ButtonBox>
+                <Hint>Already have an account? {<NavLink to='/'>Login</NavLink>}</Hint>
             </Form>
 
         </Div>

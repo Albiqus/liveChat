@@ -23,7 +23,7 @@ export const registration = (state = startState, action: any) => {
         case SET_REGISTRATION_ERRORS: {
             return {
                 ...state,
-                currentErrorIds: Array.from(new Set([...state.currentErrorIds].concat(action.payload.errors)))
+                currentErrorIds: Array.from(new Set([...state.currentErrorIds].concat(action.payload.errorIds)))
             }
         }  
         case DELETE_REGISTRATION_ERRORS: {

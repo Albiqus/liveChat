@@ -1,7 +1,7 @@
 import { SET_REGISTRATION_PRELOADER } from "../../data/actionTypes"
 
 
-export const setPreloader = () => {
+export const setRegPreloader = () => {
     return {
         type: SET_REGISTRATION_PRELOADER,
     }

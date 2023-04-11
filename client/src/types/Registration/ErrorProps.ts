@@ -1,3 +1,4 @@
 export interface ErrorProps {
-    type: string;
+    inputType: string;
+    currentErrorIds: number[];
 }

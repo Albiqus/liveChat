@@ -17,14 +17,11 @@ class UserController {
 
             const hashPassword = bcrypt.hashSync(password, 7);
             await User.create({ nickname: nickname, password: hashPassword })
-            return res.json('пользователь успешно зарегистрирован')
-
+            return res.json({ message: 'пользователь успешно зарегистрирован', nickname, isSuccessReg: true })
+            
         } catch (e) {
             return res.status(400).json('ошибка регистрации')
         }
-
-
-
     }
     async getUsers(req: any, res: any) {
         try {
