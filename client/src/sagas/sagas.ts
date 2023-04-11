@@ -6,16 +6,19 @@ import { CreateUserAction } from '../types/Registration/CreateUserAction'
 
 function* fetchCreateUser(action: CreateUserAction): any {
     try {
-        const regStatus = yield call(createUser, action.payload)
+        const regData = yield call(createUser, action.payload)
         yield put({
             type: CREATE_USER_FETCH_SUCCEEDED,
         })
         yield put({
             type: SET_REGISTRATION_ERRORS,
             payload: {
-                errors: regStatus.data.errors
+                errorIds: regData.data.errors
             }
         })
+        if (regData.data.isSuccessReg) {
+            window.location.pathname = "/"
+        }
     } catch (e: any) {
         yield put({
             type: CREATE_USER_FETCH_FAILED,
@@ -26,7 +29,7 @@ function* fetchCreateUser(action: CreateUserAction): any {
     }
 }
 
-export function* saga() {
+export function* rootSaga() {
     yield takeEvery(CREATE_USER_FETCH_REQUESTED, fetchCreateUser)
 }
 
