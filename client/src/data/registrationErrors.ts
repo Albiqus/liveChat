@@ -7,8 +7,9 @@ export const registrationErrors: { [index: number]: string } = {
     6: 'password must have at least 10 characters',
     7: 'password repetition is required',
     8: 'password mismatch',
+    9: 'incorrect login or password'
 }
 
 export const nickErrorIds = [1, 2, 3, 4]
-export const passErrorIds = [5, 6]
+export const passErrorIds = [5, 6, 9]
 export const repeatPassErrorIds = [7, 8]
