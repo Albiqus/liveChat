@@ -1,7 +1,7 @@
 import { DELETE_REGISTRATION_ERRORS } from "../../data/actionTypes"
 
 
-export const deleteErrors = (errorIds: number[]) => {
+export const deleteRegErrors = (errorIds: number[]) => {
     return {
         type: DELETE_REGISTRATION_ERRORS,
         payload: {

@@ -1,12 +1,14 @@
 import { createUserFetchRequested } from "./createUserFetchRequested";
-import { deleteErrors } from "./deleteErrors";
+import { deleteRegErrors } from "./deleteRegErrors";
 import { setRegistrationErrors } from "./setErrors";
 import { setRegPreloader } from "./setPreloader";
+import { setRegistrationStatus } from "./setRegistrationStatus";
 
 
 export {
     createUserFetchRequested,
-    deleteErrors,
+    deleteRegErrors,
     setRegistrationErrors,
     setRegPreloader,
+    setRegistrationStatus
 }
