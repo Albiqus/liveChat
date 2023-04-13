@@ -1,0 +1,9 @@
+export const emptyNickErrorId = 1
+export const busyNickErrorId = 2
+export const invalidNickLengthErrorId = 3
+export const invalidNickSymbolsErrorId = 4
+export const emptyPassErrorId = 5
+export const invalidPassLengthErrorId = 6
+export const emptyRepeatPassErrorId = 7
+export const mismatchPassErrorId = 8
+export const incorrectValuesErrorId = 9
