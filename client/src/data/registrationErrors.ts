@@ -1,4 +1,4 @@
-export const registrationErrors: { [index: number]: string } = {
+export const registrationErrors = {
     1: 'nickname is required',
     2: 'nickname is busy',
     3: 'invalid nickname length',

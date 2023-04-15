@@ -148,9 +148,4 @@ export const Preloader = styled.img`
     height: 100px;  
 `
 
-export const Hint = styled.p`
-    width: 100%;
-    font-family: 'UnivaFontLight';
-    text-align: center;
-    font-size: 16px;
-`
+

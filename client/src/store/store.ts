@@ -1,20 +1,18 @@
-import { login } from './reducers/loginReducer';
 import { registration } from './reducers/registrationReducer';
 import { legacy_createStore, combineReducers, applyMiddleware } from "redux";
 import createSagaMiddleware from 'redux-saga'
-import { rootSaga } from '../sagas/sagas';
+import { saga } from '../sagas/sagas';
 
 
 const sagaMiddleware = createSagaMiddleware()
 
 let reducers = combineReducers({
-    registration,
-    login
+    registration
 })
 
 let store = legacy_createStore(reducers, applyMiddleware(sagaMiddleware))
 
-sagaMiddleware.run(rootSaga)
+sagaMiddleware.run(saga)
 
 export { store }
 export type RootState = ReturnType<typeof store.getState>
