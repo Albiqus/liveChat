@@ -3,7 +3,6 @@ import './App.css';
 import { LiveChat } from './components/LiveChat/LiveChat';
 
 function App() {
-    
     return <LiveChat />
 }
 

@@ -5,7 +5,7 @@ import { CreateUserPayload } from "../../types/Registration/CreateUserPayload";
 export const createUser = (payload: CreateUserPayload) => {
     return axios({
         method: 'post',
-        url: 'http://localhost:5000/api/createUser',
+        url: 'http://localhost:5000/api/user',
         data: {
             nickname: payload.nickname,
             password: payload.password,

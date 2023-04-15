@@ -1,4 +1,3 @@
-import { homePage } from './reducers/homePageReducer';
 import { login } from './reducers/loginReducer';
 import { registration } from './reducers/registrationReducer';
 import { legacy_createStore, combineReducers, applyMiddleware } from "redux";
@@ -10,8 +9,7 @@ const sagaMiddleware = createSagaMiddleware()
 
 let reducers = combineReducers({
     registration,
-    login,
-    homePage
+    login
 })
 
 let store = legacy_createStore(reducers, applyMiddleware(sagaMiddleware))

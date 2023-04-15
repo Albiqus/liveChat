@@ -1,23 +1,22 @@
 import { Button, ButtonBox, ButtonText, Div, Form, Header, Input, Label, Paragraph, Wrapper, Placeholder, Tooltip, P, Preloader, Hint } from "./Registration-styles"
 import { useSelector, useDispatch } from "react-redux";
 import placeholder from '../../../images/icons/placeholder.png'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getErrors } from "../../../utils/getErrors";
 import preloader from '../../../images/preloaders/pending.svg'
 import { RootState } from "../../../store/store";
 import { nickErrorIds, passErrorIds, repeatPassErrorIds } from "../../../data/registrationErrors";
-import { createUserFetchRequested, deleteRegErrors, setRegPreloader, setRegistrationErrors } from "../../../actionCreators/Registration";
+import { createUserFetchRequested, deleteErrors, setRegPreloader, setRegistrationErrors } from "../../../actionCreators/Registration";
 import { ChangeEvent } from 'react';
 import { PassInput } from "../Common/PassInput/PassInput";
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Error } from "../Common/Error/Error";
 
 
 export const Registration = () => {
 
-    const navigate = useNavigate()
     const dispatch = useDispatch();
-    const { isPreloader, currentErrorIds, regStatus } = useSelector((state: RootState) => state.registration);
+    const { isPreloader, currentErrorIds } = useSelector((state: RootState) => state.registration);
 
     const [nickname, setNickname] = useState('')
     const [pass, setPass] = useState('')
@@ -29,15 +28,15 @@ export const Registration = () => {
 
 
     const onNickChange = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(deleteRegErrors(nickErrorIds))
+        dispatch(deleteErrors(nickErrorIds))
         setNickname(e.target.value)
     }
     const onPassChange = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(deleteRegErrors(passErrorIds))
+        dispatch(deleteErrors(passErrorIds))
         setPass(e.target.value)
     }
     const onRepeatPassChange = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(deleteRegErrors(repeatPassErrorIds))
+        dispatch(deleteErrors(repeatPassErrorIds))
         setRepeatPass(e.target.value)
     }
 
@@ -57,12 +56,6 @@ export const Registration = () => {
     const onPassMouseLeave = () => setPassTooltip(false)
     const onRepeatPassMouseEnter = () => setRepeatPassTooltip(true)
     const onRepeatPassMouseLeave = () => setRepeatPassTooltip(false)
-
-    useEffect(() => { 
-        if (regStatus) {
-            navigate('/')
-        }
-    }, [regStatus])
 
     return (
         <Div>
