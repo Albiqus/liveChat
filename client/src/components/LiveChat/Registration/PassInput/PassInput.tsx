@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { PassInputProps } from '../../../../types/PassInputPropsType';
 import { Div, Input, ShowPassTumbler } from './PassInput-styles';
 import seenIcon from '../../../../images/icons/seen.png'
 import hideIcon from '../../../../images/icons/hide.png'
-import { PassInputProps } from '../../../../types/Registration/PassInputProps';
 
 
 export const PassInput = ({ pass, onPassChange }: PassInputProps) => {

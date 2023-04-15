@@ -9,8 +9,11 @@ class UserController {
             const { nickname, password, repeatPass } = req.body
 
             const candidate = await User.findOne({ where: { nickname } })
+            if (candidate) {
+                return res.json('пользователь с таким ником уже существует')
+            }
 
-            const validData = getValidData(nickname, password, repeatPass, candidate)
+            const validData = getValidData(nickname, password, repeatPass)
             if (!validData.isValid) {
                 return res.json({ errors: validData.errors })
             }
